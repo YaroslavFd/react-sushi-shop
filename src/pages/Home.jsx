@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 import { Categories } from "../components/Categories";
@@ -6,8 +6,10 @@ import { PizzaBlock } from "../components/PizzaBlock";
 import { Sort } from "../components/Sort";
 import { Skeleton } from "../components/PizzaBlock/Skeleton";
 import { Pagination } from "../components/Pagination";
+import { SearchCotext } from "../App";
 
-export const Home = ({ searchValue }) => {
+export const Home = () => {
+  const { searchValue } = useContext(SearchCotext);
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [categoryId, setCategoryId] = useState(0);
