@@ -1,4 +1,4 @@
-export const Categories = ({ category, changeCategoty }) => {
+export const Categories = ({ value, onChangeCategory }) => {
   const categories = [
     "Все",
     "Мясные",
@@ -12,12 +12,12 @@ export const Categories = ({ category, changeCategoty }) => {
     <div className="categories">
       <ul>
         {categories.map((item, i) => {
-          const className = category === i ? "active" : "";
+          const className = value === i ? "active" : "";
           return (
             <li
               key={item}
               className={className}
-              onClick={() => changeCategoty(i)}
+              onClick={() => onChangeCategory(i)}
             >
               {item}
             </li>
