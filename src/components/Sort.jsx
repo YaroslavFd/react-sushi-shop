@@ -1,28 +1,33 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeSortType } from "../redux/slices/filterSlice";
 
-export const Sort = ({ value, onChangeSort }) => {
-  const list = [
-    {
-      id: 0,
-      name: "популярности (↓)",
-      sortProperty: "rating",
-      order: "desc",
-    },
-    {
-      id: 1,
-      name: "популярности (↑)",
-      sortProperty: "rating",
-      order: "asc",
-    },
-    { id: 2, name: "цене (↓)", sortProperty: "price", order: "desc" },
-    { id: 3, name: "цене (↑)", sortProperty: "price", order: "asc" },
-    { id: 4, name: "алфавиту (↓)", sortProperty: "title", order: "desc" },
-    { id: 5, name: "алфавиту (↑)", sortProperty: "title", order: "asc" },
-  ];
+const list = [
+  {
+    id: 0,
+    name: "популярности (↓)",
+    sortProperty: "rating",
+    order: "desc",
+  },
+  {
+    id: 1,
+    name: "популярности (↑)",
+    sortProperty: "rating",
+    order: "asc",
+  },
+  { id: 2, name: "цене (↓)", sortProperty: "price", order: "desc" },
+  { id: 3, name: "цене (↑)", sortProperty: "price", order: "asc" },
+  { id: 4, name: "алфавиту (↓)", sortProperty: "title", order: "desc" },
+  { id: 5, name: "алфавиту (↑)", sortProperty: "title", order: "asc" },
+];
+
+export const Sort = () => {
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const { sortType } = useSelector((state) => state.filter);
 
-  const sortClickHandler = (i) => {
-    onChangeSort(i);
+  const sortClickHandler = (item) => {
+    dispatch(changeSortType(item));
     setIsOpen(false);
   };
 
@@ -42,7 +47,7 @@ export const Sort = ({ value, onChangeSort }) => {
           ></path>
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setIsOpen(!isOpen)}>{value.name}</span>
+        <span onClick={() => setIsOpen(!isOpen)}>{sortType.name}</span>
       </div>
       {isOpen && (
         <div className="sort__popup">
@@ -51,7 +56,7 @@ export const Sort = ({ value, onChangeSort }) => {
               return (
                 <li
                   key={item.id}
-                  className={value.id === item.id ? "active" : ""}
+                  className={sortType.id === item.id ? "active" : ""}
                   onClick={() => sortClickHandler(item)}
                 >
                   {item.name}

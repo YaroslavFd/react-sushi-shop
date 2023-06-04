@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 import { Categories } from "../components/Categories";
@@ -8,18 +9,20 @@ import { Skeleton } from "../components/PizzaBlock/Skeleton";
 import { Pagination } from "../components/Pagination";
 import { SearchCotext } from "../App";
 
+import { changeCategory } from "../redux/slices/filterSlice";
+
 export const Home = () => {
+  const dispatch = useDispatch();
   const { searchValue } = useContext(SearchCotext);
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [categoryId, setCategoryId] = useState(0);
-  const [sortType, setSortType] = useState({
-    id: 0,
-    name: "популярности (↓)",
-    sortProperty: "rating",
-    order: "desc",
-  });
   const [isLoading, setIsLoading] = useState(true);
+
+  const { categoryId, sortType } = useSelector((state) => state.filter);
+
+  const onChangeCategory = (id) => {
+    dispatch(changeCategory(id));
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -52,11 +55,8 @@ export const Home = () => {
   return (
     <div className="container">
       <div className="content__top">
-        <Categories
-          value={categoryId}
-          onChangeCategory={(i) => setCategoryId(i)}
-        />
-        <Sort value={sortType} onChangeSort={(i) => setSortType(i)} />
+        <Categories id={categoryId} onChangeCategory={onChangeCategory} />
+        <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">{isLoading ? skeletons : pizzas}</div>
