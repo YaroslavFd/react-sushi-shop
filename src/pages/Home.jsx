@@ -9,16 +9,17 @@ import { Skeleton } from "../components/PizzaBlock/Skeleton";
 import { Pagination } from "../components/Pagination";
 import { SearchCotext } from "../App";
 
-import { changeCategory } from "../redux/slices/filterSlice";
+import { changeCategory, changeCurrentPage } from "../redux/slices/filterSlice";
 
 export const Home = () => {
   const dispatch = useDispatch();
   const { searchValue } = useContext(SearchCotext);
   const [items, setItems] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { categoryId, sortType } = useSelector((state) => state.filter);
+  const { categoryId, sortType, currentPage } = useSelector(
+    (state) => state.filter
+  );
 
   const onChangeCategory = (id) => {
     dispatch(changeCategory(id));
@@ -62,7 +63,7 @@ export const Home = () => {
       <div className="content__items">{isLoading ? skeletons : pizzas}</div>
       <Pagination
         currentPage={currentPage}
-        onChangePage={(number) => setCurrentPage(number)}
+        onChangePage={(number) => dispatch(changeCurrentPage(number))}
       />
     </div>
   );
