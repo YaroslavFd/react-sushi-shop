@@ -1,18 +1,28 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import qs from "qs";
 
 import { Categories } from "../components/Categories";
 import { PizzaBlock } from "../components/PizzaBlock";
-import { Sort } from "../components/Sort";
+import { Sort, sortList } from "../components/Sort";
 import { Skeleton } from "../components/PizzaBlock/Skeleton";
 import { Pagination } from "../components/Pagination";
 import { SearchCotext } from "../App";
 
-import { changeCategory, changeCurrentPage } from "../redux/slices/filterSlice";
+import {
+  changeCategory,
+  changeCurrentPage,
+  setFilters,
+} from "../redux/slices/filterSlice";
 
 export const Home = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isSearch = useRef(false);
+  const isMounted = useRef(false);
+
   const { searchValue } = useContext(SearchCotext);
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +35,7 @@ export const Home = () => {
     dispatch(changeCategory(id));
   };
 
-  useEffect(() => {
+  const fetchPizzas = () => {
     setIsLoading(true);
 
     const categorySort = categoryId > 0 ? `category=${categoryId}` : "";
@@ -41,8 +51,48 @@ export const Home = () => {
         setIsLoading(false);
       })
       .catch((error) => console.log(error));
+  };
 
+  useEffect(() => {
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortId: sortType.id,
+        categoryId,
+        currentPage,
+      });
+
+      navigate(`?${queryString}`);
+    }
+
+    isMounted.current = true;
+  }, [categoryId, sortType, currentPage]);
+
+  useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+
+      const sortType = sortList.find(
+        (item) => Number(item.id) === Number(params.sortId)
+      );
+
+      dispatch(
+        setFilters({
+          ...params,
+          sortType,
+        })
+      );
+      isSearch.current = true;
+    }
+  }, []);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
+
+    if (!isSearch.current) {
+      fetchPizzas();
+    }
+
+    isSearch.current = false;
   }, [categoryId, sortType, searchValue, currentPage]);
 
   const pizzas = items.map((item) => {

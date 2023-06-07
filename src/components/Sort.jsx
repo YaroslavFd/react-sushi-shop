@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeSortType } from "../redux/slices/filterSlice";
 
-const list = [
+export const sortList = [
   {
     id: 0,
     name: "популярности (↓)",
@@ -52,7 +52,7 @@ export const Sort = () => {
       {isOpen && (
         <div className="sort__popup">
           <ul>
-            {list.map((item, i) => {
+            {sortList.map((item, i) => {
               return (
                 <li
                   key={item.id}
