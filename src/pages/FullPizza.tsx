@@ -2,10 +2,16 @@ import React from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
-export const FullPizza = () => {
+type Item = {
+  imageUrl: string;
+  title: string;
+  price: number;
+};
+
+export const FullPizza: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [item, setItem] = React.useState();
+  const [item, setItem] = React.useState<Item>();
 
   React.useEffect(() => {
     (async () => {

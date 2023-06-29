@@ -1,3 +1,4 @@
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
@@ -8,7 +9,7 @@ import { NotFound } from "./pages/NotFound";
 
 import "./scss/app.scss";
 
-export const App = () => {
+export const App: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>

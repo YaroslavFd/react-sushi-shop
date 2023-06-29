@@ -2,7 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeSortType } from "../redux/slices/filterSlice";
 
-export const sortList = [
+type SortItem = {
+  id: number;
+  name: string;
+  sortProperty: string;
+  order: string;
+};
+
+export const sortList: SortItem[] = [
   {
     id: 0,
     name: "популярности (↓)",
@@ -21,19 +28,19 @@ export const sortList = [
   { id: 5, name: "алфавиту (↑)", sortProperty: "title", order: "asc" },
 ];
 
-export const Sort = () => {
+export const Sort: React.FC = () => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = React.useState(false);
-  const sortType = useSelector((state) => state.filter.sortType);
-  const sortRef = React.useRef();
+  const sortType = useSelector((state: any) => state.filter.sortType);
+  const sortRef = React.useRef<HTMLDivElement>(null);
 
-  const sortClickHandler = (item) => {
+  const sortClickHandler = (item: SortItem) => {
     dispatch(changeSortType(item));
     setIsOpen(false);
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: any) => {
       if (!event.composedPath().includes(sortRef.current)) {
         setIsOpen(false);
       }
@@ -65,7 +72,7 @@ export const Sort = () => {
       {isOpen && (
         <div className="sort__popup">
           <ul>
-            {sortList.map((item, i) => {
+            {sortList.map((item) => {
               return (
                 <li
                   key={item.id}

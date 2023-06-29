@@ -1,4 +1,14 @@
-export const Categories = ({ id, onChangeCategory }) => {
+import React from "react";
+
+interface ICategoriesProps {
+  id: number;
+  onChangeCategory: (i: number) => void;
+}
+
+export const Categories: React.FC<ICategoriesProps> = ({
+  id,
+  onChangeCategory,
+}) => {
   const categories = [
     "Все",
     "Мясные",

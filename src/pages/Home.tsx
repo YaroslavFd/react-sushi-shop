@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import qs from "qs";
@@ -17,19 +17,19 @@ import {
 } from "../redux/slices/filterSlice";
 import { fetchItems } from "../redux/slices/pizzaSlice";
 
-export const Home = () => {
+export const Home: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isSearch = useRef(false);
-  const isMounted = useRef(false);
+  const isSearch = React.useRef(false);
+  const isMounted = React.useRef(false);
 
-  const { items, status } = useSelector((state) => state.pizza);
+  const { items, status } = useSelector((state: any) => state.pizza);
 
   const { categoryId, sortType, currentPage, searchValue } = useSelector(
-    (state) => state.filter
+    (state: any) => state.filter
   );
 
-  const onChangeCategory = (id) => {
+  const onChangeCategory = (id: number) => {
     dispatch(changeCategory(id));
   };
 
@@ -39,6 +39,7 @@ export const Home = () => {
     const search = searchValue ? `&search=${searchValue}` : "";
 
     dispatch(
+      // @ts-ignore
       fetchItems({
         categorySort,
         sortBy,
@@ -48,7 +49,7 @@ export const Home = () => {
     );
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (isMounted.current) {
       const queryString = qs.stringify({
         sortId: sortType.id,
@@ -62,7 +63,7 @@ export const Home = () => {
     isMounted.current = true;
   }, [categoryId, sortType, currentPage]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
 
@@ -80,7 +81,7 @@ export const Home = () => {
     }
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo(0, 0);
 
     if (!isSearch.current) {
@@ -90,7 +91,7 @@ export const Home = () => {
     isSearch.current = false;
   }, [categoryId, sortType, searchValue, currentPage]);
 
-  const pizzas = items.map((item) => {
+  const pizzas = items.map((item: any) => {
     return <PizzaBlock key={item.id} {...item} />;
   });
 
@@ -114,7 +115,7 @@ export const Home = () => {
       )}
       <Pagination
         currentPage={currentPage}
-        onChangePage={(number) => dispatch(changeCurrentPage(number))}
+        onChangePage={(page: number) => dispatch(changeCurrentPage(page))}
       />
     </div>
   );
