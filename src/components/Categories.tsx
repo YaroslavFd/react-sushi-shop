@@ -9,7 +9,7 @@ export const Categories: React.FC<ICategoriesProps> = ({
   id,
   onChangeCategory,
 }) => {
-  const categories = [
+  const categories: string[] = [
     "Все",
     "Мясные",
     "Вегетарианская",

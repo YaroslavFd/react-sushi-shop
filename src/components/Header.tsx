@@ -9,7 +9,7 @@ import logoSvg from "../assets/img/pizza-logo.svg";
 export const Header: React.FC = () => {
   const { totalPrice, items } = useSelector(selectCart);
   const totalCount = items.reduce(
-    (sum: number, item: any) => item.count + sum,
+    (sum, item) => item.count + sum,
     0
   );
   return (

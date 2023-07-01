@@ -1,11 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
-const initialState = {
+export type CartItem = {
+  id: string;
+  title: string;
+  price: number;
+  type: string;
+  size: number;
+  imageUrl: string;
+  count: number;
+};
+
+interface CartSliceState {
+  totalPrice: number;
+  items: CartItem[];
+}
+
+const initialState: CartSliceState = {
   totalPrice: 0,
   items: [],
 };
 
-const calcTotalPrice = (state) => {
+const calcTotalPrice = (state: CartSliceState) => {
   state.totalPrice = state.items.reduce((sum, obj) => {
     return obj.price * obj.count + sum;
   }, 0);
@@ -15,7 +31,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItem: (state, action) => {
+    addItem: (state, action: PayloadAction<CartItem>) => {
       const findItem = state.items.find(
         (item) => item.id === action.payload.id
       );
@@ -30,11 +46,14 @@ const cartSlice = createSlice({
       }
       calcTotalPrice(state);
     },
-    minusItem: (state, action) => {
+    minusItem: (state, action: PayloadAction<string>) => {
       const findItem = state.items.find((item) => item.id === action.payload);
-      findItem.count--;
 
-      if (findItem.count < 1) {
+      if (findItem) {
+        findItem.count--;
+      }
+
+      if (findItem && findItem.count < 1) {
         state.items = state.items.filter((item) =>
           item.count === 0 ? null : item.count
         );
@@ -43,7 +62,7 @@ const cartSlice = createSlice({
       calcTotalPrice(state);
     },
 
-    removeItem: (state, action) => {
+    removeItem: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
 
       calcTotalPrice(state);
@@ -56,7 +75,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const selectCart = (state) => state.cart;
+export const selectCart = (state: RootState) => state.cart;
 
 export default cartSlice.reducer;
 

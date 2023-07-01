@@ -10,7 +10,7 @@ export const Cart: React.FC = () => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector(selectCart);
   const totalCount = items.reduce(
-    (sum: number, item: any) => item.count + sum,
+    (sum, item) => item.count + sum,
     0
   );
 
@@ -96,7 +96,7 @@ export const Cart: React.FC = () => {
           </div>
         </div>
         <div className="content__items">
-          {items.map((item: any) => {
+          {items.map((item) => {
             return <CartItem key={item.id} {...item} />;
           })}
         </div>

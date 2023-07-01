@@ -1,22 +1,17 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-
-type Item = {
-  imageUrl: string;
-  title: string;
-  price: number;
-};
+import { Pizza } from "../redux/slices/pizzaSlice";
 
 export const FullPizza: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [item, setItem] = React.useState<Item>();
+  const [item, setItem] = React.useState<Pizza>();
 
   React.useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get(
+        const { data } = await axios.get<Pizza>(
           "https://646cc9cc7b42c06c3b2c045f.mockapi.io/items/" + id
         );
         setItem(data);
