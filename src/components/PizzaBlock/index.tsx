@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { addItem } from "../../redux/slices/cartSlice";
+import { addItem } from "../../redux/cart/slice";
 import { RootState } from "../../redux/store";
 
 interface IPizzaBlockProps {

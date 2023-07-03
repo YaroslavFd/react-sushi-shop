@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SortType, changeSortType } from "../redux/slices/filterSlice";
+import { changeSortType } from "../redux/filter/slice";
+import { SortType } from "../redux/filter/types";
 import { RootState } from "../redux/store";
 
 export const sortList: SortType[] = [

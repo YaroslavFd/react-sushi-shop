@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { clearCart, selectCart } from "../redux/slices/cartSlice";
+import { clearCart, selectCart } from "../redux/cart/slice";
 
 import { CartEmpty } from "../components/CartEmpty";
 import { CartItem } from "../components/CartItem";
@@ -9,10 +9,7 @@ import { CartItem } from "../components/CartItem";
 export const Cart: React.FC = () => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector(selectCart);
-  const totalCount = items.reduce(
-    (sum, item) => item.count + sum,
-    0
-  );
+  const totalCount = items.reduce((sum, item) => item.count + sum, 0);
 
   if (!items.length) {
     return <CartEmpty />;
@@ -54,7 +51,7 @@ export const Cart: React.FC = () => {
             </svg>
             Корзина
           </h2>
-          <div onClick={() => dispatch(clearCart())} className="cart__clear">
+          <button onClick={() => dispatch(clearCart())} className="cart__clear">
             <svg
               width="20"
               height="20"
@@ -93,7 +90,7 @@ export const Cart: React.FC = () => {
             </svg>
 
             <span>Очистить корзину</span>
-          </div>
+          </button>
         </div>
         <div className="content__items">
           {items.map((item) => {
@@ -134,9 +131,9 @@ export const Cart: React.FC = () => {
 
               <span>Вернуться назад</span>
             </Link>
-            <div className="button pay-btn">
+            <button className="button pay-btn">
               <span>Оплатить сейчас</span>
-            </div>
+            </button>
           </div>
         </div>
       </div>

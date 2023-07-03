@@ -1,11 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import {
-  addItem,
-  removeItem,
-  minusItem,
-  CartItem as CartItemType,
-} from "../redux/slices/cartSlice";
+import { addItem, removeItem, minusItem } from "../redux/cart/slice";
+import { CartItem as CartItemType } from "../redux/cart/types";
 
 interface ICartItemProps {
   id: string;
@@ -56,6 +52,7 @@ export const CartItem: React.FC<ICartItemProps> = ({
       </div>
       <div className="cart__item-count">
         <button
+          disabled={count === 1}
           onClick={onClickMinus}
           className="button button--outline button--circle cart__item-count-minus"
         >
