@@ -1,17 +1,18 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { Pizza } from "../redux/pizza/types";
+import { ProductType } from "../redux/product/types";
+import { FullProductBlock } from "../components/FullProductBlock";
 
-export const FullPizza: React.FC = () => {
+export const FullProduct: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [item, setItem] = React.useState<Pizza>();
+  const [item, setItem] = React.useState<ProductType>();
 
   React.useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get<Pizza>(
+        const { data } = await axios.get<ProductType>(
           "https://646cc9cc7b42c06c3b2c045f.mockapi.io/items/" + id
         );
         setItem(data);
@@ -28,13 +29,7 @@ export const FullPizza: React.FC = () => {
 
   return (
     <div className="container">
-      <img
-        style={{ width: 300, height: 300 }}
-        src={item.imageUrl}
-        alt={item.title}
-      />
-      <h2>{item.title}</h2>
-      <h4>{item.price} ₽</h4>
+      <FullProductBlock {...item} />
     </div>
   );
 };

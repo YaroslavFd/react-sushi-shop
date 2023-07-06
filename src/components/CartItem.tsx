@@ -7,8 +7,7 @@ interface ICartItemProps {
   id: string;
   title: string;
   price: number;
-  type: string;
-  size: number;
+  grams: number;
   imageUrl: string;
   count: number;
 }
@@ -17,8 +16,7 @@ export const CartItem: React.FC<ICartItemProps> = ({
   id,
   title,
   price,
-  type,
-  size,
+  grams,
   imageUrl,
   count,
 }) => {
@@ -42,13 +40,11 @@ export const CartItem: React.FC<ICartItemProps> = ({
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+        <img className="product-block__image" src={imageUrl} alt={title} />
       </div>
       <div className="cart__item-info">
         <h3>{title}</h3>
-        <p>
-          {type}, {size} см.
-        </p>
+        <p>{grams} г</p>
       </div>
       <div className="cart__item-count">
         <button

@@ -4,20 +4,18 @@ interface ICategoriesProps {
   id: number;
   onChangeCategory: (i: number) => void;
 }
+export const categories: string[] = [
+  "Все",
+  "Роллы",
+  "Запеченные",
+  "Суши",
+  "Сеты",
+];
 
 export const Categories: React.FC<ICategoriesProps> = ({
   id,
   onChangeCategory,
 }) => {
-  const categories: string[] = [
-    "Все",
-    "Мясные",
-    "Вегетарианская",
-    "Гриль",
-    "Острые",
-    "Закрытые",
-  ];
-
   return (
     <div className="categories">
       <ul>

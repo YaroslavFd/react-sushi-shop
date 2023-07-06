@@ -1,0 +1,63 @@
+.content {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+
+  .image {
+    flex-basis: 30%;
+    img {
+      width: 100%;
+    }
+  }
+
+  .info {
+    h3 {
+      font-size: 28px;
+      line-height: 1.1;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .grams {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    .descr {
+      font-weight: 500;
+      max-width: 500px;
+    }
+  }
+
+  button {
+    margin-top: 30px;
+  }
+
+  .table {
+    display: flex;
+    border-top: 1px dotted #c4c4c4;
+    border-bottom: 1px dotted #c4c4c4;
+    margin-top: 50px;
+
+    .tableItem {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 170px;
+      padding: 10px 15px;
+
+      font-size: 14px;
+      line-height: 21px;
+      font-weight: 500;
+
+      &:not(:last-child) {
+        border-right: 1px dotted #c4c4c4;
+      }
+
+      span {
+        display: block;
+      }
+    }
+  }
+}

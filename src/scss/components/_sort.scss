@@ -1,4 +1,4 @@
-@import '../variables';
+@import "../variables";
 
 .sort {
   position: relative;
@@ -15,9 +15,10 @@
     }
 
     span {
-      color: $orange;
-      border-bottom: 1px dashed $orange;
+      color: $accent;
+      border-bottom: 1px dashed $accent;
       cursor: pointer;
+      white-space: nowrap;
     }
   }
 
@@ -44,7 +45,7 @@
 
         &.active {
           font-weight: bold;
-          color: $orange;
+          color: $accent;
         }
       }
     }

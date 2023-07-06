@@ -4,7 +4,7 @@ import { Search } from "./Search";
 import { useSelector } from "react-redux";
 import { selectCart } from "../redux/cart/slice";
 
-import logoSvg from "../assets/img/pizza-logo.svg";
+import logoSvg from "../assets/img/sushi-logo.svg";
 
 export const Header: React.FC = () => {
   const location = useLocation();
@@ -25,10 +25,10 @@ export const Header: React.FC = () => {
       <div className="container">
         <Link to="/">
           <div className="header__logo">
-            <img width="38" src={logoSvg} alt="Pizza logo" />
+            <img width="38" src={logoSvg} alt="Sushi shop logo" />
             <div>
-              <h1>React Pizza</h1>
-              <p>самая вкусная пицца во вселенной</p>
+              <h1>Sushi shop</h1>
+              <p>Самые вкусные cуши и роллы</p>
             </div>
           </div>
         </Link>

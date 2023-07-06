@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchItems } from "./asyncActions";
-import { PizzaSliceState, Status } from "./types";
+import { ProductSliceState, Status } from "./types";
 
-const initialState: PizzaSliceState = {
+const initialState: ProductSliceState = {
   items: [],
   status: Status.LOADING,
 };
 
-const pizzaSlice = createSlice({
-  name: "pizza",
+const productSlice = createSlice({
+  name: "product",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -29,4 +29,4 @@ const pizzaSlice = createSlice({
   },
 });
 
-export default pizzaSlice.reducer;
+export default productSlice.reducer;

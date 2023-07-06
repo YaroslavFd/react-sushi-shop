@@ -101,7 +101,7 @@ export const Cart: React.FC = () => {
           <div className="cart__bottom-details">
             <span>
               {" "}
-              Всего пицц: <b>{totalCount} шт.</b>{" "}
+              Всего товаров: <b>{totalCount} шт.</b>{" "}
             </span>
             <span>
               {" "}

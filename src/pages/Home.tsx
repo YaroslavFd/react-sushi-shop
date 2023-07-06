@@ -1,21 +1,21 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { Categories } from "../components/Categories";
-import { PizzaBlock } from "../components/PizzaBlock";
+import { Categories, categories } from "../components/Categories";
+import { ProductBlock } from "../components/ProductBlock";
 import { Sort } from "../components/Sort";
-import { Skeleton } from "../components/PizzaBlock/Skeleton";
+import { Skeleton } from "../components/ProductBlock/Skeleton";
 import { Pagination } from "../components/Pagination";
 import { ContentError } from "../components/ContentError";
 
 import { changeCategory, changeCurrentPage } from "../redux/filter/slice";
-import { fetchItems } from "../redux/pizza/asyncActions";
+import { fetchItems } from "../redux/product/asyncActions";
 import { RootState, useAppDispatch } from "../redux/store";
 
 export const Home: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const { items, status } = useSelector((state: RootState) => state.pizza);
+  const { items, status } = useSelector((state: RootState) => state.product);
 
   const { categoryId, sortType, currentPage, searchValue } = useSelector(
     (state: RootState) => state.filter
@@ -26,7 +26,7 @@ export const Home: React.FC = () => {
     dispatch(changeCurrentPage(1));
   };
 
-  const fetchPizzas = async () => {
+  const fetchSushi = async () => {
     const categorySort = categoryId > 0 ? `category=${categoryId}` : "";
     const sortBy = `${sortType.sortProperty}&order=${sortType.order}`;
     const search = searchValue ? `&search=${searchValue}` : "";
@@ -44,11 +44,11 @@ export const Home: React.FC = () => {
   };
 
   React.useEffect(() => {
-    fetchPizzas();
+    fetchSushi();
   }, [categoryId, sortType, searchValue, currentPage]);
 
-  const pizzas = items.map((item) => {
-    return <PizzaBlock key={item.id} {...item} />;
+  const products = items.map((item) => {
+    return <ProductBlock key={item.id} {...item} />;
   });
 
   const skeletons = [...Array(4)].map((_, i) => {
@@ -61,12 +61,14 @@ export const Home: React.FC = () => {
         <Categories id={categoryId} onChangeCategory={onChangeCategory} />
         <Sort />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      <h2 className="content__title">
+        {categoryId ? categories[categoryId] : "Все роллы и суши"}
+      </h2>
       {status === "error" ? (
         <ContentError />
       ) : (
         <div className="content__items">
-          {status === "loading" ? skeletons : pizzas}
+          {status === "loading" ? skeletons : products}
         </div>
       )}
       <Pagination

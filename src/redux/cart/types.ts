@@ -2,8 +2,7 @@ export type CartItem = {
   id: string;
   title: string;
   price: number;
-  type: string;
-  size: number;
+  grams: number;
   imageUrl: string;
   count: number;
 };
