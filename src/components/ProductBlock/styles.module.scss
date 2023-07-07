@@ -1,6 +1,6 @@
-@import "../variables";
+@import "../../scss/variables";
 
-.product-block {
+.product {
   display: flex;
   flex-direction: column;
   width: 285px;
@@ -17,7 +17,7 @@
     transform: scale(1.03);
   }
 
-  &__image {
+  .productImage {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,7 +28,7 @@
     }
   }
 
-  &__title {
+  .productTitle {
     font-size: 20px;
     font-weight: 900;
     margin-bottom: 20px;
@@ -41,13 +41,13 @@
     white-space: nowrap;
   }
 
-  &__content {
+  .productContent {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
   }
 
-  &__descr {
+  .descr {
     margin-bottom: 15px;
     p {
       margin-bottom: 10px;
@@ -64,14 +64,14 @@
     }
   }
 
-  &__bottom {
+  .bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: auto;
   }
 
-  &__price {
+  .price {
     font-weight: bold;
     font-size: 22px;
     line-height: 27px;

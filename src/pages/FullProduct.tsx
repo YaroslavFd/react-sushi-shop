@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProductType } from "../redux/product/types";
 import { FullProductBlock } from "../components/FullProductBlock";
+import { Spinner } from "../components/Spinner";
 
 export const FullProduct: React.FC = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export const FullProduct: React.FC = () => {
   }, []);
 
   if (!item) {
-    return <h2>Загрузка...</h2>;
+    return <Spinner />;
   }
 
   return (

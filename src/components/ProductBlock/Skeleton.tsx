@@ -1,9 +1,11 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
 
+import styles from "./styles.module.scss";
+
 export const Skeleton: React.FC = () => (
   <ContentLoader
-    className="product-block"
+    className={styles.product}
     speed={2}
     width={285}
     height={380}

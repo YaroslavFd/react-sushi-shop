@@ -5,6 +5,7 @@ import { clearCart, selectCart } from "../redux/cart/slice";
 
 import { CartEmpty } from "../components/CartEmpty";
 import { CartItem } from "../components/CartItem";
+import { Button } from "../UI/Button";
 
 export const Cart: React.FC = () => {
   const dispatch = useDispatch();
@@ -131,9 +132,7 @@ export const Cart: React.FC = () => {
 
               <span>Вернуться назад</span>
             </Link>
-            <button className="button pay-btn">
-              <span>Оплатить сейчас</span>
-            </button>
+            <Button appearClasses="button pay-btn">Оплатить сейчас</Button>
           </div>
         </div>
       </div>

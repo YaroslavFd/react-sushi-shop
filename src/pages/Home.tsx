@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { Categories, categories } from "../components/Categories";
+import { Categories, categoriesList } from "../components/Categories";
 import { ProductBlock } from "../components/ProductBlock";
 import { Sort } from "../components/Sort";
 import { Skeleton } from "../components/ProductBlock/Skeleton";
@@ -26,7 +26,7 @@ export const Home: React.FC = () => {
     dispatch(changeCurrentPage(1));
   };
 
-  const fetchSushi = async () => {
+  const fetchProduct = async () => {
     const categorySort = categoryId > 0 ? `category=${categoryId}` : "";
     const sortBy = `${sortType.sortProperty}&order=${sortType.order}`;
     const search = searchValue ? `&search=${searchValue}` : "";
@@ -44,7 +44,7 @@ export const Home: React.FC = () => {
   };
 
   React.useEffect(() => {
-    fetchSushi();
+    fetchProduct();
   }, [categoryId, sortType, searchValue, currentPage]);
 
   const products = items.map((item) => {
@@ -62,7 +62,7 @@ export const Home: React.FC = () => {
         <Sort />
       </div>
       <h2 className="content__title">
-        {categoryId ? categories[categoryId] : "Все роллы и суши"}
+        {categoryId ? categoriesList[categoryId] : "Все роллы и суши"}
       </h2>
       {status === "error" ? (
         <ContentError />

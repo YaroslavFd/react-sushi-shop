@@ -1,10 +1,12 @@
 import React from "react";
 
+import styles from "./styles.module.scss";
+
 interface ICategoriesProps {
   id: number;
   onChangeCategory: (i: number) => void;
 }
-export const categories: string[] = [
+export const categoriesList: string[] = [
   "Все",
   "Роллы",
   "Запеченные",
@@ -17,10 +19,10 @@ export const Categories: React.FC<ICategoriesProps> = ({
   onChangeCategory,
 }) => {
   return (
-    <div className="categories">
+    <div className={styles.categories}>
       <ul>
-        {categories.map((item, i) => {
-          const className = id === i ? "active" : "";
+        {categoriesList.map((item, i) => {
+          const className = id === i ? styles.active : "";
           return (
             <li
               key={item}

@@ -74,6 +74,7 @@ export const FullProductBlock: React.FC<FullProductBlockProps> = ({
           appearClasses="button button--outline button--add"
           onClick={onClickAdd}
           count={addedCount}
+          withPlus
         >
           Добавить
         </Button>

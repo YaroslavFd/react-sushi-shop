@@ -1,8 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSortType } from "../redux/filter/slice";
-import { SortType } from "../redux/filter/types";
-import { RootState } from "../redux/store";
+import { changeSortType } from "../../redux/filter/slice";
+import { SortType } from "../../redux/filter/types";
+import { RootState } from "../../redux/store";
+
+import styles from "./styles.module.scss";
 
 export const sortList: SortType[] = [
   {
@@ -47,8 +49,8 @@ export const Sort: React.FC = () => {
   }, []);
 
   return (
-    <div className="sort" ref={sortRef}>
-      <div className="sort__label">
+    <div className={styles.sort} ref={sortRef}>
+      <div className={styles.label}>
         <svg
           width="10"
           height="6"
@@ -65,13 +67,13 @@ export const Sort: React.FC = () => {
         <span onClick={() => setIsOpen(!isOpen)}>{sortType.name}</span>
       </div>
       {isOpen && (
-        <div className="sort__popup">
+        <div className={styles.popup}>
           <ul>
             {sortList.map((item) => {
               return (
                 <li
                   key={item.id}
-                  className={sortType.id === item.id ? "active" : ""}
+                  className={sortType.id === item.id ? styles.active : ""}
                   onClick={() => sortClickHandler(item)}
                 >
                   {item.name}

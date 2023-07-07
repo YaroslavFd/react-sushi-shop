@@ -6,6 +6,8 @@ import { addItem } from "../../redux/cart/slice";
 import { RootState } from "../../redux/store";
 import { Button } from "../../UI/Button";
 
+import styles from './styles.module.scss';
+
 interface ProductBlockProps {
   id: string;
   imageUrl: string;
@@ -42,24 +44,25 @@ export const ProductBlock: React.FC<ProductBlockProps> = ({
   };
 
   return (
-    <div className="product-block">
+    <div className={styles.product}>
       <Link to={`/product/${id}`}>
-        <div className="product-block__image">
+        <div className={styles.productImage}>
           <img src={imageUrl} alt={title} />
         </div>
-        <h4 className="product-block__title">{title}</h4>
+        <h4 className={styles.productTitle}>{title}</h4>
       </Link>
-      <div className="product-block__content">
-        <div className="product-block__descr">
+      <div className={styles.productContent}>
+        <div className={styles.descr}>
           <p>{descr}</p>
           <span>{grams} г.</span>
         </div>
-        <div className="product-block__bottom">
-          <div className="product-block__price">от {price} ₽</div>
+        <div className={styles.bottom}>
+          <div className={styles.price}>от {price} ₽</div>
           <Button
             appearClasses="button button--outline button--add"
             onClick={onClickAdd}
             count={addedCount}
+            withPlus
           >
             Добавить
           </Button>
