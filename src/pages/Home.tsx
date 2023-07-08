@@ -71,6 +71,12 @@ export const Home: React.FC = () => {
           {status === "loading" ? skeletons : products}
         </div>
       )}
+
+      {!products.length && status !== "error" && (
+        <h3 className="content__not-found">
+          Ничего не найдено <span>😕</span>
+        </h3>
+      )}
       <Pagination
         currentPage={currentPage}
         onChangePage={(page: number) => dispatch(changeCurrentPage(page))}

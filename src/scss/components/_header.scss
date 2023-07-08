@@ -45,6 +45,10 @@
     span {
       white-space: nowrap;
     }
+
+    @media (max-width: 767px) {
+      margin: 0 auto;
+    }
   }
   &__logo {
     display: flex;
