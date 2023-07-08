@@ -20,7 +20,7 @@ https://react-sushi-shop.vercel.app/
 - _React Router v6_
 - _Axios + Fetch_
 - _CSS-Modules / SCSS_
-- _Lodash.Debounce (оптимизация для поиска товара)._
+- _Lodash.Debounce (оптимизация для поиска товаров)._
 - _React Content Loader (скелетон)_
 - _React Pagination (пагинация)_
 
