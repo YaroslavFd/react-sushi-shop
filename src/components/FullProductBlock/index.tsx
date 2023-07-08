@@ -55,7 +55,9 @@ export const FullProductBlock: React.FC<FullProductBlockProps> = ({
         <span className={styles.grams}>{grams} г</span>
         <p className={styles.descr}>{descr}</p>
         <div className={styles.table}>
-          <div className={styles.tableItem}>Пищевая ценность продукта</div>
+          <div className={styles.tableItem}>
+            Пищевая ценность продукта (100г)
+          </div>
           <div className={styles.tableItem}>
             Белки <span>{nutritionalValue.proteins} г</span>
           </div>

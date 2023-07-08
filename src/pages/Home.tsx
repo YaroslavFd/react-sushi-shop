@@ -72,7 +72,7 @@ export const Home: React.FC = () => {
         </div>
       )}
 
-      {!products.length && status !== "error" && (
+      {!products.length && status === "success" && (
         <h3 className="content__not-found">
           Ничего не найдено <span>😕</span>
         </h3>
