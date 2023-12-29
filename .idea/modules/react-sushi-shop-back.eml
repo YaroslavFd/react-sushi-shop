@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component LANGUAGE_LEVEL="JDK_17" inherit-compiler-output="true" inheritJdk="true">
+	<contentEntry url="file://$MODULE_DIR$/../../react-sushi-shop-back">
+		<excludeFolder url="file://$MODULE_DIR$/../../react-sushi-shop-back/.gradle"/>
+		<excludeFolder url="file://$MODULE_DIR$/../../react-sushi-shop-back/build"/>
+	</contentEntry>
+	<contentEntry url="file://$MODULE_DIR$/../../react-sushi-shop-back"/>
+</component>
