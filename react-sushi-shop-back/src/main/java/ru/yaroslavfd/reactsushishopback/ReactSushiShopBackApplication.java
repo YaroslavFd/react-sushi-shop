@@ -5,27 +5,20 @@ import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration;
 
 @OpenAPIDefinition(
 		info = @Info(
-				title = "",
-				version = "",
+				title = "Магазин Суши",
+				version = "01.000.00",
 				contact = @Contact(
-						email = "",
-						name = ""
+						email = "yaroslav.web9@gmail.com",
+						name = "Yaroslav"
 				)
 		)
 )
 
 
-@SpringBootApplication(exclude = {
-		DataSourceAutoConfiguration.class,
-		FreeMarkerAutoConfiguration.class,
-		JmsAutoConfiguration.class
-})
+@SpringBootApplication
 public class ReactSushiShopBackApplication {
 
 	public static void main(String[] args) {

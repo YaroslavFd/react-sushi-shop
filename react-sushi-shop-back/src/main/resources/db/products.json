@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Филадельфия",
+    "code": "filadelphia",
+    "imageUrl": "https://images.sushishop.ru/assets/images/cache/docs/39/2021filadelfiya.jpg/1629470311/820x655.webp",
+    "weight": 245,
+    "description": "Лосось, сливочный сыр, огурец, соевый соус (30 мл).",
+    "nutritionalValue": 100,
+    "squirrels": 8,
+    "fats": 10,
+    "carbohydrates": 27,
+    "energyValue": 234,
+    "productType": "ROLL"
+  }
+]
